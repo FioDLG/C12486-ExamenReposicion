@@ -19,15 +19,18 @@ namespace GestorDeApartamentos.UI.Controllers
             _servicio = servicio;
         }
 
-        public IActionResult Index(string? filtroNombre)
+        public IActionResult Index(string? nombre)
         {
             var lista = _repositorio.ObtenerTodos();
 
-            if (!string.IsNullOrWhiteSpace(filtroNombre))
-                lista = lista.Where(a => a.Nombre.Contains(filtroNombre));
+            if (!string.IsNullOrEmpty(nombre))
+            {
+                lista = lista.Where(a => a.Nombre.Contains(nombre, StringComparison.OrdinalIgnoreCase));
+            }
 
             return View(lista);
         }
+
 
         [HttpGet]
         public IActionResult Create()
@@ -70,7 +73,7 @@ namespace GestorDeApartamentos.UI.Controllers
             return View(apto);
         }
 
-        public IActionResult Disponibles(int? piso, decimal? precioMin, decimal? precioMax)
+        public IActionResult Disponibles(int? piso, decimal? precioMin, decimal? precioMax, string? nombre)
         {
             var lista = _repositorio.ObtenerTodos()
                                     .Where(a => a.Estado == (int)EstadoApartamento.Disponible);
@@ -84,8 +87,12 @@ namespace GestorDeApartamentos.UI.Controllers
             if (precioMax.HasValue)
                 lista = lista.Where(a => a.PrecioPorMes <= precioMax.Value);
 
+            if (!string.IsNullOrEmpty(nombre))
+                lista = lista.Where(a => a.Nombre.Contains(nombre, StringComparison.OrdinalIgnoreCase));
+
             return View(lista);
         }
+
 
 
 
