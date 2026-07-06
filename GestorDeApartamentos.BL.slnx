@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="GestorDeApartamentos.BL/GestorDeApartamentos.BL.csproj" />
+  <Project Path="GestorDeApartamentos.DA/GestorDeApartamentos.DA.csproj" />
+  <Project Path="GestorDeApartamentos.Model/GestorDeApartamentos.Model.csproj" />
+  <Project Path="GestorDeApartamentos.UI/GestorDeApartamentos.UI.csproj" />
+</Solution>
