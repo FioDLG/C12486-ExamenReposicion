@@ -1,0 +1,44 @@
+﻿@model GestorDeApartamentos.Model.Apartamento
+
+<h2>Alquilar Apartamento</h2>
+
+<form asp-action="Alquilar" method="post">
+    <input type="hidden" asp-for="Id" />
+
+    <div class="form-group">
+        <label>Identificación del Inquilino</label>
+        <input asp-for="IdentificacionInquilino" class="form-control" required />
+    </div>
+
+    <div class="form-group">
+        <label>Nombre del Inquilino</label>
+        <input asp-for="NombreInquilino" class="form-control" required />
+    </div>
+
+    <div class="form-group">
+        <label>Fecha de Inicio</label>
+        <input asp-for="FechaInicioAlquiler" type="date" class="form-control" required />
+    </div>
+
+    <div class="form-group">
+        <label>Cantidad de Meses</label>
+        <input asp-for="CantidadDeMesesAlquiler" type="number" class="form-control" required />
+    </div>
+
+    <div class="form-group">
+        <label>Precio por Mes</label>
+        <input asp-for="PrecioPorMes" class="form-control" readonly />
+    </div>
+
+    <div class="form-group">
+        <label>Depósito de Garantía</label>
+        <input asp-for="DepositoDeGarantia" class="form-control" readonly />
+        <small class="form-text text-muted">
+            El depósito se calcula automáticamente según la cantidad de meses.
+        </small>
+    </div>
+
+    <button type="submit" class="btn btn-success">Confirmar Alquiler</button>
+    <a asp-action="Disponibles" class="btn btn-secondary">Cancelar</a>
+</form>
+

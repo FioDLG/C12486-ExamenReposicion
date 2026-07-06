@@ -1,0 +1,37 @@
+﻿@model IEnumerable<GestorDeApartamentos.Model.Apartamento>
+
+<h2>Lista de Apartamentos</h2>
+
+<form method="get">
+    <input type="text" name="filtroNombre" placeholder="Buscar por nombre" />
+    <button type="submit">Filtrar</button>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Estado</th>
+            <th>Piso</th>
+            <th>Precio por mes</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var apto in Model)
+        {
+            <tr>
+                <td>@apto.Nombre</td>
+                <td>@apto.Estado</td>
+                <td>@apto.NumeroDePiso</td>
+                <td>@apto.PrecioPorMes</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@apto.Id">Editar</a> |
+                    <a asp-action="Detalle" asp-route-id="@apto.Id">Detalle</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+

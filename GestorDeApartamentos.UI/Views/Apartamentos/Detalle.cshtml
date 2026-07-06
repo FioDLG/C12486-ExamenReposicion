@@ -1,0 +1,17 @@
+﻿@model GestorDeApartamentos.Model.Apartamento
+
+<h2>Detalle del Apartamento</h2>
+
+<ul class="list-group">
+    <li class="list-group-item"><strong>Nombre:</strong> @Model.Nombre</li>
+    <li class="list-group-item"><strong>Estado:</strong> @Model.Estado</li>
+    <li class="list-group-item"><strong>Piso:</strong> @Model.NumeroDePiso</li>
+    <li class="list-group-item"><strong>Precio por Mes:</strong> @Model.PrecioPorMes</li>
+    <li class="list-group-item"><strong>Inquilino:</strong> @Model.NombreInquilino</li>
+    <li class="list-group-item"><strong>Fecha Inicio:</strong> @Model.FechaInicioAlquiler</li>
+    <li class="list-group-item"><strong>Meses:</strong> @Model.CantidadDeMesesAlquiler</li>
+    <li class="list-group-item"><strong>Depósito:</strong> @Model.DepositoDeGarantia</li>
+</ul>
+
+<a asp-action="Index" class="btn btn-secondary">Volver</a>
+

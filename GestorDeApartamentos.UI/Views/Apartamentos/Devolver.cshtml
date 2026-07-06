@@ -1,0 +1,14 @@
+﻿@model GestorDeApartamentos.Model.Apartamento
+
+<h2>Devolver Apartamento</h2>
+
+<div class="alert alert-warning">
+    ¿Estás segura que deseas devolver el apartamento <strong>@Model.Nombre</strong>?
+</div>
+
+<form asp-action="Devolver" method="post">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger">Confirmar Devolución</button>
+    <a asp-action="Alquilados" class="btn btn-secondary">Cancelar</a>
+</form>
+

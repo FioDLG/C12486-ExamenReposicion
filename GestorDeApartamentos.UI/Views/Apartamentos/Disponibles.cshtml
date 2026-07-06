@@ -1,0 +1,36 @@
+﻿@model IEnumerable<GestorDeApartamentos.Model.Apartamento>
+
+<h2>Apartamentos Disponibles</h2>
+
+@if (Model != null && Model.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Piso</th>
+                <th>Precio por Mes</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var apto in Model)
+            {
+                <tr>
+                    <td>@apto.Nombre</td>
+                    <td>@apto.NumeroDePiso</td>
+                    <td>@apto.PrecioPorMes</td>
+                    <td>
+                        <a asp-action="Alquilar" asp-route-id="@apto.Id">Alquilar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="alert alert-info">
+        No hay apartamentos disponibles en este momento.
+    </div>
+}

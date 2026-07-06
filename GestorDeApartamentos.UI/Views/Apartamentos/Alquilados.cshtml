@@ -1,0 +1,29 @@
+﻿@model IEnumerable<GestorDeApartamentos.Model.Apartamento>
+
+<h2>Apartamentos Alquilados</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Inquilino</th>
+            <th>Fecha Inicio</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var apto in Model)
+        {
+            <tr>
+                <td>@apto.Nombre</td>
+                <td>@apto.NombreInquilino</td>
+                <td>@apto.FechaInicioAlquiler</td>
+                <td>
+                    <a asp-action="Devolver" asp-route-id="@apto.Id">Devolver</a> |
+                    <a asp-action="Detalle" asp-route-id="@apto.Id">Detalle</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
