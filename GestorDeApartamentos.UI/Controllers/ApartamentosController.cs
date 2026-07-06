@@ -70,13 +70,23 @@ namespace GestorDeApartamentos.UI.Controllers
             return View(apto);
         }
 
-        public IActionResult Disponibles()
+        public IActionResult Disponibles(int? piso, decimal? precioMin, decimal? precioMax)
         {
             var lista = _repositorio.ObtenerTodos()
                                     .Where(a => a.Estado == (int)EstadoApartamento.Disponible);
 
+            if (piso.HasValue)
+                lista = lista.Where(a => a.NumeroDePiso == piso.Value);
+
+            if (precioMin.HasValue)
+                lista = lista.Where(a => a.PrecioPorMes >= precioMin.Value);
+
+            if (precioMax.HasValue)
+                lista = lista.Where(a => a.PrecioPorMes <= precioMax.Value);
+
             return View(lista);
         }
+
 
 
 
@@ -113,6 +123,7 @@ namespace GestorDeApartamentos.UI.Controllers
                     apartamento.CantidadDeMesesAlquiler.Value);
 
                 _repositorio.Actualizar(apto);
+                TempData["Mensaje"] = "Apartamento alquilado correctamente.";
             }
 
             return RedirectToAction("Alquilados");
@@ -135,6 +146,7 @@ namespace GestorDeApartamentos.UI.Controllers
             {
                 _servicio.Devolver(apto);
                 _repositorio.Actualizar(apto);
+                TempData["Mensaje"] = "Apartamento devuelto correctamente.";
             }
 
             return RedirectToAction(nameof(Disponibles));

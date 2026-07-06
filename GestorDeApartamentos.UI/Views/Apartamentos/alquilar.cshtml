@@ -2,43 +2,46 @@
 
 <h2>Alquilar Apartamento</h2>
 
+@if (TempData["Mensaje"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["Mensaje"]
+    </div>
+}
+
 <form asp-action="Alquilar" method="post">
     <input type="hidden" asp-for="Id" />
 
-    <div class="form-group">
-        <label>Identificación del Inquilino</label>
-        <input asp-for="IdentificacionInquilino" class="form-control" required />
+    <div class="mb-3">
+        <label asp-for="IdentificacionInquilino" class="form-label"></label>
+        <input asp-for="IdentificacionInquilino" class="form-control" placeholder="Ingrese la cédula del inquilino" required />
+        <span asp-validation-for="IdentificacionInquilino" class="text-danger"></span>
     </div>
 
-    <div class="form-group">
-        <label>Nombre del Inquilino</label>
-        <input asp-for="NombreInquilino" class="form-control" required />
+    <div class="mb-3">
+        <label asp-for="NombreInquilino" class="form-label"></label>
+        <input asp-for="NombreInquilino" class="form-control" placeholder="Ingrese el nombre completo" required />
+        <span asp-validation-for="NombreInquilino" class="text-danger"></span>
     </div>
 
-    <div class="form-group">
-        <label>Fecha de Inicio</label>
+    <div class="mb-3">
+        <label asp-for="FechaInicioAlquiler" class="form-label"></label>
         <input asp-for="FechaInicioAlquiler" type="date" class="form-control" required />
+        <span asp-validation-for="FechaInicioAlquiler" class="text-danger"></span>
     </div>
 
-    <div class="form-group">
-        <label>Cantidad de Meses</label>
-        <input asp-for="CantidadDeMesesAlquiler" type="number" class="form-control" required />
-    </div>
-
-    <div class="form-group">
-        <label>Precio por Mes</label>
-        <input asp-for="PrecioPorMes" class="form-control" readonly />
-    </div>
-
-    <div class="form-group">
-        <label>Depósito de Garantía</label>
-        <input asp-for="DepositoDeGarantia" class="form-control" readonly />
-        <small class="form-text text-muted">
-            El depósito se calcula automáticamente según la cantidad de meses.
-        </small>
+    <div class="mb-3">
+        <label asp-for="CantidadDeMesesAlquiler" class="form-label"></label>
+        <input asp-for="CantidadDeMesesAlquiler" type="number" class="form-control" placeholder="Ejemplo: 12" required />
+        <span asp-validation-for="CantidadDeMesesAlquiler" class="text-danger"></span>
     </div>
 
     <button type="submit" class="btn btn-success">Confirmar Alquiler</button>
     <a asp-action="Disponibles" class="btn btn-secondary">Cancelar</a>
 </form>
 
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

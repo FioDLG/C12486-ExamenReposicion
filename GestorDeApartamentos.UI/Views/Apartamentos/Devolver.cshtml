@@ -2,6 +2,14 @@
 
 <h2>Devolver Apartamento</h2>
 
+
+@if (TempData["Mensaje"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["Mensaje"]
+    </div>
+}
+
 <div class="alert alert-warning">
     ¿Estás segura que deseas devolver el apartamento <strong>@Model.Nombre</strong>?
 </div>
@@ -11,4 +19,3 @@
     <button type="submit" class="btn btn-danger">Confirmar Devolución</button>
     <a asp-action="Alquilados" class="btn btn-secondary">Cancelar</a>
 </form>
-

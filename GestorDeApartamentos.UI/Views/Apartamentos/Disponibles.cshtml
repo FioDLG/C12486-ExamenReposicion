@@ -2,10 +2,37 @@
 
 <h2>Apartamentos Disponibles</h2>
 
+
+@if (TempData["Mensaje"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["Mensaje"]
+    </div>
+}
+
+
+<form method="get" class="mb-3">
+    <div class="row">
+        <div class="col-md-3">
+            <input type="number" name="piso" class="form-control" placeholder="Piso" />
+        </div>
+        <div class="col-md-3">
+            <input type="number" name="precioMin" class="form-control" placeholder="Precio mínimo" />
+        </div>
+        <div class="col-md-3">
+            <input type="number" name="precioMax" class="form-control" placeholder="Precio máximo" />
+        </div>
+        <div class="col-md-3">
+            <button type="submit" class="btn btn-primary w-100">Filtrar</button>
+        </div>
+    </div>
+</form>
+
+
 @if (Model != null && Model.Any())
 {
-    <table class="table">
-        <thead>
+    <table class="table table-striped">
+        <thead class="table-dark">
             <tr>
                 <th>Nombre</th>
                 <th>Piso</th>
@@ -21,7 +48,8 @@
                     <td>@apto.NumeroDePiso</td>
                     <td>@apto.PrecioPorMes</td>
                     <td>
-                        <a asp-action="Alquilar" asp-route-id="@apto.Id">Alquilar</a>
+                        <a asp-action="Alquilar" asp-route-id="@apto.Id" class="btn btn-success btn-sm">Alquilar</a>
+                        <a asp-action="Detalle" asp-route-id="@apto.Id" class="btn btn-info btn-sm">Detalle</a>
                     </td>
                 </tr>
             }
